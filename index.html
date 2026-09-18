@@ -64,6 +64,12 @@
     max-width:760px;
     margin:6px 0 12px;
   }
+  header p a{
+    color:var(--ink);
+    border-bottom:1px solid var(--ink-soft);
+    text-decoration:none;
+  }
+  header p a:hover{border-bottom-color:var(--ink);}
   .chips{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{
     font-family:'IBM Plex Mono',monospace;
@@ -269,7 +275,7 @@
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
-    <p id="siteIntro">Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].</p>
+    <p id="siteIntro">Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta,  <a href="mailto:santiago@sorrego.net">escríbenos</a>.</p>
     <div class="chips">
       <button class="chip groups" data-type="group" data-active="true"><span class="dot"></span><span data-i18n="chipGroup">Grupos e instituciones</span></button>
       <button class="chip individuals" data-type="individual" data-active="true"><span class="dot"></span><span data-i18n="chipIndividual">Investigadores</span></button>
@@ -322,7 +328,7 @@ const I18N = {
   es: {
     docTitle:'Investigación multimodal en España — mapa interactivo',
     h1:'Investigación multimodal en España',
-    intro:'Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].',
+    intro:'Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, <a href="mailto:santiago@sorrego.net">escríbenos</a>.',
     footer:'Este inventario se construye a partir de fuentes públicas y se encuentra bajo la licencia CC BY-SA 4.0.',
     chipGroup:'Grupos e instituciones', chipIndividual:'Investigadore', chipPhd:'Doctorandes', chipProject:'Proyectos',
     searchPlaceholder:'Buscar por nombre, ciudad, institución…',
@@ -337,7 +343,7 @@ const I18N = {
   en: {
     docTitle:'Multimodal Research in Spain — interactive map',
     h1:'Multimodal Research in Spain',
-    intro:"An interactive map of where multimodal research happens in Spain today. Find groups, researchers, doctoral candidates and projects. This artefact was built from public information such as Spanish universities' websites and the Multimodal Anthropology Network (ASAEE). Locations are approximate, at city level. The map keeps growing; if your project is missing, write to us at [to define].",
+    intro:"An interactive map of where multimodal research happens in Spain today. Find groups, researchers, doctoral candidates and projects. This artefact was built from public information such as Spanish universities' websites and the Multimodal Anthropology Network (ASAEE). Locations are approximate, at city level. The map keeps growing; if your project is missing, <a href='mailto:santiago@sorrego.net'>write to us</a>.",
     footer:'This inventory is built from public sources and is released under a CC BY-SA 4.0 licence.',
     chipGroup:'Groups & institutions', chipIndividual:'Researcher', chipProject:'Projects',
     searchPlaceholder:'Search by name, city, institution…',
@@ -522,7 +528,7 @@ function applyLang(){
   const t = I18N[lang];
   document.title = t.docTitle;
   document.getElementById('siteTitle').textContent = t.h1;
-  document.getElementById('siteIntro').textContent = t.intro;
+  document.getElementById('siteIntro').innerHTML = t.intro;
   document.getElementById('search').placeholder = t.searchPlaceholder;
   document.querySelector('[data-i18n="chipGroup"]').textContent = t.chipGroup;
   document.querySelector('[data-i18n="chipIndividual"]').textContent = t.chipIndividual;
