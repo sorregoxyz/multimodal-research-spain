@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antropología multimodal en España — un inventario cartográfico</title>
+<title>Investigación multimodal en España — un inventario cartográfico</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
     --line:#E2E2E2;
     --group:#FDD63D;
     --individual:#F75232;
+    --phd:#8B5CF6;
     --project:#2971AB;
     --unverified:#9B9B9B;
   }
@@ -80,6 +81,7 @@
   .chip[data-active="false"]{opacity:0.35;}
   .chip.groups .dot{background:var(--group);}
   .chip.individuals .dot{background:var(--individual);}
+  .chip.phds .dot{background:var(--phd);}
   .chip.projects .dot{background:var(--project);}
 
   main{flex:1;display:flex;min-height:0;}
@@ -124,6 +126,7 @@
   .card.dashed{border-left-style:dashed;}
   .card.type-group{border-left-color:var(--group);}
   .card.type-individual{border-left-color:var(--individual);}
+  .card.type-phd{border-left-color:var(--phd);}
   .card.type-project{border-left-color:var(--project);}
   .card .name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;line-height:1.25;}
   .card .meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);margin-top:3px;}
@@ -260,16 +263,17 @@
 
   <header>
     <div class="header-top">
-      <h1 id="siteTitle">Antropología multimodal en España</h1>
+      <h1 id="siteTitle">Investigación multimodal en España</h1>
       <div class="lang-switch">
         <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
         <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
     </div>
-    <p id="siteIntro">Un mapa interactivo de dónde se hace antropología multimodal hoy en España. Encuentra grupos, personas y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].</p>
+    <p id="siteIntro">Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].</p>
     <div class="chips">
       <button class="chip groups" data-type="group" data-active="true"><span class="dot"></span><span data-i18n="chipGroup">Grupos e instituciones</span></button>
-      <button class="chip individuals" data-type="individual" data-active="true"><span class="dot"></span><span data-i18n="chipIndividual">Personas</span></button>
+      <button class="chip individuals" data-type="individual" data-active="true"><span class="dot"></span><span data-i18n="chipIndividual">Investigadores</span></button>
+      <button class="chip phds" data-type="phd" data-active="true"><span class="dot"></span><span data-i18n="chipPhd">Doctorandes</span></button>
       <button class="chip projects" data-type="project" data-active="true"><span class="dot"></span><span data-i18n="chipProject">Proyectos</span></button>
     </div>
   </header>
@@ -316,11 +320,11 @@ Papa.parse("data/data_multimodality.csv", {
 // ---------------------------------------------------------------
 const I18N = {
   es: {
-    docTitle:'Antropología multimodal en España — mapa interactivo',
-    h1:'Antropología multimodal en España',
-    intro:'Un mapa interactivo de dónde se hace antropología multimodal hoy en España. Encuentra grupos, personas y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Antropología Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].',
+    docTitle:'Investigación multimodal en España — mapa interactivo',
+    h1:'Investigación multimodal en España',
+    intro:'Un mapa interactivo de dónde se hace investigación multimodal hoy en España. Encuentra grupos, investigadores, doctorandes y proyectos. Este artefacto se ha construido a partir de información pública como las páginas web de las universidades españolas y la Red de Investigación Multimodal (ASAEE). Las ubicaciones son aproximadas, a nivel de ciudad. El mapa está en constante expansión; si tu proyecto falta, escríbenos a [por definir].',
     footer:'Este inventario se construye a partir de fuentes públicas y se encuentra bajo la licencia CC BY-SA 4.0.',
-    chipGroup:'Grupos e instituciones', chipIndividual:'Personas', chipProject:'Proyectos',
+    chipGroup:'Grupos e instituciones', chipIndividual:'Personas', chipPhd:'Doctorandes', chipProject:'Proyectos',
     searchPlaceholder:'Buscar por nombre, ciudad, institución…',
     popupTag:{group:'Grupo / institución', individual:'Persona', project:'Proyecto'},
     verifyPartial:'⚠ afiliación confirmada, enlace directo pendiente',
@@ -331,9 +335,9 @@ const I18N = {
     locationInfo:'Las ubicaciones son aproximadas, a nivel de ciudad, no direcciones exactas. Cuando varios nodos comparten ciudad, se distribuyen visualmente a su alrededor para poder distinguirse: esa dispersión es solo un recurso visual y no indica una posición real distinta.'
   },
   en: {
-    docTitle:'Multimodal Anthropology in Spain — interactive map',
-    h1:'Multimodal anthropology in Spain',
-    intro:"An interactive map of where multimodal anthropology happens in Spain today. Find groups, people and projects. This artefact was built from public information such as Spanish universities' websites and the Multimodal Anthropology Network (ASAEE). Locations are approximate, at city level. The map keeps growing; if your project is missing, write to us at [to define].",
+    docTitle:'Multimodal Research in Spain — interactive map',
+    h1:'Multimodal Research in Spain',
+    intro:"An interactive map of where multimodal research happens in Spain today. Find groups, researchers, doctoral candidates and projects. This artefact was built from public information such as Spanish universities' websites and the Multimodal Research Network (ASAEE). Locations are approximate, at city level. The map keeps growing; if your project is missing, write to us at [to define].",
     footer:'This inventory is built from public sources and is released under a CC BY-SA 4.0 licence.',
     chipGroup:'Groups & institutions', chipIndividual:'People', chipProject:'Projects',
     searchPlaceholder:'Search by name, city, institution…',
@@ -395,7 +399,7 @@ const InfoControl = L.Control.extend({
 });
 map.addControl(new InfoControl());
 
-const colors = {group:'#FDD63D', individual:'#F75232', project:'#2971AB'};
+const colors = {group:'#FDD63D', individual:'#F75232', phd:'#8B5CF6', project:'#2971AB'};
 
 function makeIcon(node){
   const dashed = node.verified === 'confirmar' ? ' dashed' : '';
@@ -440,7 +444,7 @@ function buildMarkers(){
 // ---------------------------------------------------------------
 // SIDEBAR
 // ---------------------------------------------------------------
-const activeTypes = new Set(['group','individual','project']);
+const activeTypes = new Set(['group','individual','phd','project']);
 let query = '';
 
 function renderList(){
@@ -450,6 +454,7 @@ function renderList(){
   const groups = {
     group: {label:t.chipGroup, items:[]},
     individual: {label:t.chipIndividual, items:[]},
+    phd: {label:t.chipPhd, items:[]},
     project: {label:t.chipProject, items:[]}
   };
   DATA.filter(n => activeTypes.has(n.type))
@@ -521,6 +526,7 @@ function applyLang(){
   document.getElementById('search').placeholder = t.searchPlaceholder;
   document.querySelector('[data-i18n="chipGroup"]').textContent = t.chipGroup;
   document.querySelector('[data-i18n="chipIndividual"]').textContent = t.chipIndividual;
+  document.querySelector('[data-i18n="chipPhd"]').textContent = t.chipPhd;
   document.querySelector('[data-i18n="chipProject"]').textContent = t.chipProject;
   document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
   const resetBtn = document.getElementById('resetViewBtn');
