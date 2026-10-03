@@ -1,5 +1,7 @@
 ![header](https://sorrego.net/wp-content/uploads/multimodal-header.jpg)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23123421.svg)](https://doi.org/10.5281/zenodo.23123421)
+
 # Multimodal Research in Spain
 
 An interactive map documenting researchers, PhD candidates, groups, and projects working on multimodal research in Spain.
