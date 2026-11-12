@@ -1,4 +1,4 @@
-![header](https://sorrego.net/wp-content/uploads/multimodal-header.jpg)
+![header](https://github.com/sorregoxyz/multimodal-research-spain/blob/main/Support-files/header.jpeg?raw=true)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23123421.svg)](https://doi.org/10.5281/zenodo.23123421)
 
